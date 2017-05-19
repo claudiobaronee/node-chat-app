@@ -1,31 +1,32 @@
 class Users {
   constructor () {
-    this.users = [];
+    this.users = []
   }
+
   addUser (id, name, room) {
-    var user = {id, name, room};
-    this.users.push(user);
-    return user;
+    let user = {id, name, room}
+    this.users.push(user)
+    return user
   }
 
   removeUser (id) {
-    var user = this.getUser(id);
+    let user = this.getUser(id)
     if (user) {
-      this.users = this.users.filter((user) => user.id !== id);
+      this.users = this.users.filter((user) => user.id !== id)
     }
-    return user;
+    return user
   }
 
   getUser (id) {
-    return this.users.filter(user => user.id === id)[0];
+    return this.users.filter(user => user.id === id)[0]
   }
 
   getUserList (room) {
-    var users = this.users.filter(user => user.room === room);
-    var namesArray = users.map(user => user.name)
+    let users = this.users.filter(user => user.room === room)
+    let namesArray = users.map(user => user.name)
 
-    return namesArray;
+    return namesArray
   }
 }
 
-module.exports = {Users};
+module.exports = {Users}

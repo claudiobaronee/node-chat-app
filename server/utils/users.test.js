@@ -1,77 +1,78 @@
-const expect = require('expect');
+/*  global describe, it, beforeEach */
 
-const {Users} = require('./users');
+const expect = require('expect')
+
+const {Users} = require('./users')
 
 describe('Users', () => {
-  var users;
+  let users
 
   beforeEach(() => {
-    users = new Users();
+    users = new Users()
     users.users = [{
       id: '1',
       name: 'Claudio',
       room: 'Node Course'
-    },{
+    }, {
       id: '2',
       name: 'Barone',
       room: 'Node Course2'
-    },{
+    }, {
       id: '3',
       name: 'Larissa',
       room: 'Node Course'
     }]
-  });
+  })
 
   it('should add new user', () => {
-    var users = new Users();
-    var user = {
+    let users = new Users()
+    let user = {
       id: '123',
       name: 'Andrew',
-      room: 'The Office Fans'
-    };
-    var resUser = users.addUser(user.id, user.name, user.room);
+      room: 'The Office'
+    }
+    users.addUser(user.id, user.name, user.room)
 
-    expect(users.users).toEqual([user]);
-  });
+    expect(users.users).toEqual([user])
+  })
 
   it('should remove a user', () => {
-    var userId = '1';
-    var user = users.removeUser(userId);
+    let userId = '1'
+    let user = users.removeUser(userId)
 
-    expect(user.id).toBe(userId);
-    expect(users.users.length).toBe(2);
-  });
+    expect(user.id).toBe(userId)
+    expect(users.users.length).toBe(2)
+  })
 
   it('should not remove a user', () => {
-    var userId = '99';
-    var user = users.removeUser(userId);
+    let userId = '99'
+    let user = users.removeUser(userId)
 
-    expect(user).toNotExist();
-    expect(users.users.length).toBe(3);
-  });
+    expect(user).toNotExist()
+    expect(users.users.length).toBe(3)
+  })
 
   it('should find a user', () => {
-    var userId = '2';
-    var user = users.getUser(userId);
+    let userId = '2'
+    let user = users.getUser(userId)
 
-    expect(user.id).toBe(userId);
-  });
+    expect(user.id).toBe(userId)
+  })
 
   it('should not find a user', () => {
-    var userId = '99';
-    var user = users.getUser(userId);
+    let userId = '99'
+    let user = users.getUser(userId)
 
-    expect(user).toNotExist();
-  });
+    expect(user).toNotExist()
+  })
 
   it('should return names for node course', () => {
-    var userList = users.getUserList('Node Course');
-    expect(userList).toEqual(['Claudio', 'Larissa']);
-  });
+    let userList = users.getUserList('Node Course')
+    expect(userList).toEqual(['Claudio', 'Larissa'])
+  })
 
   it('should return names for node course2', () => {
-    var userList = users.getUserList('Node Course2');
-    expect(userList).toEqual(['Barone']);
-  });
-
-});
+    let userList = users.getUserList('Node Course2')
+    expect(userList).toEqual(['Barone'])
+  })
+})
